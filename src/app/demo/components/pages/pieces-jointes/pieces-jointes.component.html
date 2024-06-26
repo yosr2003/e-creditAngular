@@ -1,0 +1,40 @@
+<div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <p-table [value]="documents" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:200px" pFrozenColumn>Documents</th>
+              <th style="width:200px">Obligatoire</th>
+              <th style="width:200px">Statut</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-document>
+            <tr>
+              <td style="width:200px" pFrozenColumn class="font-bold">{{document.name}}</td>
+              <td style="width:200px">
+                <span [class]="'customer-badge status-' + document.required">{{document.required ? 'Oui' : 'Non'}}</span>
+              </td>
+              <td style="width:200px">
+                <span class="image-text ml-2">
+                  <input type="checkbox" [(ngModel)]="document.statut" [value]="document.name">
+                </span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+  
+
+     
+
+      <button type="button" (click)="upload()">Uploader</button>
+    </div>
+    <p-fileUpload (onSelect)="seletedFile($event)" (onRemove)="removeFile($event)" [showUploadButton]="false" [multiple]="true"></p-fileUpload>
+    
+  </div>
+  <div class="grid grid-nogutter justify-content-between">
+      <p-button label="Back"  icon="pi pi-angle-left" (onClick)="prevPage()"></p-button>
+      <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+  </div>
+

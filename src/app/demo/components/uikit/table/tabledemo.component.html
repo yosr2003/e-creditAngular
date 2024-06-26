@@ -1,0 +1,43 @@
+<form [formGroup]="demandeForm">
+	<div class="grid">
+	  <div class="col-12">
+		<div class="card">
+		  <p-table [value]="demandeDto" scrollDirection="both" [scrollable]="true" scrollHeight="400px" styleClass="mt-3" responsiveLayout="scroll">
+			<ng-template pTemplate="header">
+			  <tr>
+				<th style="width:200px" pFrozenColumn>ID demande</th>
+				<th style="width:200px">Nom client</th>
+				<th style="width:200px">Type credit</th>
+				<th style="width:200px">Statut</th>
+				<th style="width:200px">Date demande</th>
+				<th style="width:200px"   *ngIf="authService.isAdmin()">Actions</th>
+			  </tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-demandeCredit>
+				<tr *ngIf="demandeCredit.nomClient === 'yosr' || authService.isAdmin()">
+					<td style="width:200px" pFrozenColumn class="font-bold">{{demandeCredit.idDemandeCredit}}</td>
+					<td style="width:200px">{{demandeCredit.nomClient}}</td>
+					<td style="width:200px">{{demandeCredit.typeCredit}}</td>
+					<td style="width:200px">{{demandeCredit.statut}}</td>
+					<td style="width:200px">{{demandeCredit.dateDemande | date:'short'}}</td>
+					<td style="width:200px">
+						<ng-container *ngIf="demandeCredit.statut === 'En cours'; else statusButtons">
+							En cours
+						</ng-container>
+						<ng-template #statusButtons>
+							<div *ngIf="authService.isAdmin()">
+								<button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="updateStatut(demandeCredit, 'Valide')"></button>
+								<button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="updateStatut(demandeCredit, 'Rejete')"></button>
+							</div>
+						</ng-template>
+					</td>
+				</tr>
+			</ng-template>
+			
+		  </p-table>
+		</div>
+	  </div>
+	</div>
+
+  </form>
+  

@@ -1,0 +1,72 @@
+<form action="" [formGroup]="clientForm">
+
+<div class="grid">
+     <div class="col-12"> 
+		<div class="card">
+			<h5>Advanced</h5>
+			<div class="p-fluid p-formgrid grid">
+				<div class="field col-12 md:col-4">
+					<label htmlFor="cin" >N° CIN</label>
+					<input pInputText id="cin" type="number" formControlName="cin" (change)="updateInfoClient()" />
+					<div *ngIf="clientForm.get('cin').invalid && (clientForm.get('cin').dirty || clientForm.get('cin').touched)">
+						<div class="error-message" *ngIf="clientForm.get('cin').errors.required">
+							Le champ N° CIN est obligatoire
+						</div>
+						<div class="error-message" *ngIf="clientForm.get('cin').errors.pattern">
+							Le champ N° CIN doit contenir uniquement des chiffres
+						</div>
+					</div>
+					
+				</div>
+				<div class="field col-12 md:col-4">
+					<label htmlFor="firstname2">Firstname</label>
+					<input pInputText id="firstname2" type="text" formControlName="nomClient" />
+				</div>
+				<div class="field col-12 md:col-4">
+					<label htmlFor="lastname2">Lastname</label>
+					<input pInputText id="lastname2" type="text" formControlName="prenomClient" />
+				</div>
+				<div class="field col-12 ">
+				<label for="selectedCompte">Compte:</label>
+				<p-dropdown  id="selectedCompte" formControlName="selectedCompte" (onChange)="chooseNum($event.value)" [options]="comptes"
+				  optionLabel="numCompte"
+				></p-dropdown> 
+				<div *ngIf="clientForm.get('selectedCompte').invalid && (clientForm.get('selectedCompte').dirty || clientForm.get('selectedCompte').touched)">
+					<div class="error-message" *ngIf="clientForm.get('selectedCompte').errors.required">
+						Le champ Compte est obligatoire
+					</div>
+				</div>
+			
+			
+			</div>
+				<br>
+			
+				<div class="field col-12 md:col-6">
+					<label htmlFor="state">Devise</label>
+				
+					<input pInputText  type="text" formControlName="devise" />
+				  </div>
+				<div class="field col-12 md:col-6">
+					<label for="">Date d'ouverture</label>
+					<p-calendar [showIcon]="true" inputId="icon" formControlName="DateOuv"></p-calendar>
+				</div>
+				<div class="field col-12 md:col-6" >
+					<label for="">Date de Naissance</label>
+					<p-calendar [showIcon]="true" inputId="icon" formControlName="dateNais"></p-calendar>
+				</div>
+				<div class="field col-12 md:col-6">
+					<label htmlFor="zip">Situation</label>
+					<input pInputText id="zip" type="text"formControlName="situation" />
+				</div>
+			</div>
+		</div><div class="grid grid-nogutter justify-content-between">
+	<p-button label="Back"  icon="pi pi-angle-left"></p-button>
+	<p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+</div>
+</div> 
+</div>
+
+
+
+</form>
+

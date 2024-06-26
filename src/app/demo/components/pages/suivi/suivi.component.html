@@ -1,0 +1,38 @@
+<form action="" [formGroup]="clientForm">
+
+    <div class="grid">
+         <div class="col-12"> 
+            <div class="card">
+                <h5>Suivi</h5>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="">Entrée en relation le </label>
+                        <p-calendar [showIcon]="true" inputId="icon" formControlName="DateRelation"></p-calendar>
+                        <div *ngIf="clientForm.get('DateRelation').invalid && (clientForm.get('DateRelation').dirty || clientForm.get('DateRelation').touched)">
+                            <div *ngIf="clientForm.get('DateRelation').errors?.required" class="error-message">
+                                Ce champ est obligatoire
+                            </div>
+                            <!-- Ajoutez d'autres validations au besoin -->
+                        </div>
+                    </div>
+                 
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="zip">Par</label>
+                        <input pInputText id="zip" type="text"formControlName="nomSuivi" />
+                        <div *ngIf="clientForm.get('nomSuivi').invalid && (clientForm.get('nomSuivi').dirty || clientForm.get('nomSuivi').touched)">
+                            <div *ngIf="clientForm.get('nomSuivi').errors?.required" class="error-message">
+                                Ce champ est obligatoire
+                            </div>
+                            <!-- Ajoutez d'autres validations au besoin -->
+                        </div>
+                    </div>
+                </div>
+            </div>   <div class="grid grid-nogutter justify-content-between">
+        <p-button label="Back"  icon="pi pi-angle-left" (onClick)="prevPage()"></p-button>
+        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+    </div>
+    </div> 
+ 
+    </div>
+    
+    </form>

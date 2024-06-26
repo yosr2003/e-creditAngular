@@ -1,0 +1,19 @@
+<form [formGroup]="observation">
+
+	<div class="grid p-fluid">
+	  <div class="col-12 md">
+		<div class="card">
+		  <div class="grid formgrid">
+  
+			<textarea (onchange)="save()" rows="6" cols="120" placeholder="Your Message" formControlName="descripObservation" pTextarea></textarea>
+  
+		  </div>
+		</div><div class="grid grid-nogutter justify-content-between">
+		<p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left"></p-button>
+
+	</div>
+	  </div>
+	</div>
+  
+  </form>
+  

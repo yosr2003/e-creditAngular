@@ -1,0 +1,56 @@
+<form [formGroup]="creditForm" >
+    <div class="grid">
+      <div class="col-12">
+        <div class="card">
+          <h5>Advanced</h5>
+          <div class="p-fluid p-formgrid grid">
+  
+            <div class="field col-12 md:col-6">
+              <label for="typeCredit">Type crédit</label>
+              <p-dropdown (onChange)="sendType()" id="typeCredit" formControlName="typeCredit" [options]="typesCredit" required></p-dropdown>
+              <div  class="error-message" *ngIf="creditForm.get('typeCredit')?.hasError('required') && creditForm.get('typeCredit')?.touched">
+                typeCredit est obligatoire.
+              </div>
+            </div>
+  
+            <div class="field col-12 md:col-6">
+              <label for="montant">Montant</label>
+              <input pInputText id="montant" type="text" formControlName="montant" required />
+              <div *ngIf="creditForm.get('montant').invalid && (creditForm.get('montant').dirty || creditForm.get('montant').touched)">
+                <div *ngIf="creditForm.get('montant').errors?.required" class="error-message">
+                  Le champ Montant est obligatoire
+                </div>
+                <div *ngIf="creditForm.get('montant').errors?.pattern" class="error-message">
+                  Le montant doit être un nombre décimal valide (ex: 123.45)
+                </div>
+              </div>
+              
+             <!--  qfqdfgh -->
+              
+            </div>
+  
+            <div class="field col-12 md:col-6">
+              <label for="unite">Unite</label>
+              <p-dropdown id="unite" formControlName="unite" [options]="unites" placeholder="Select Unite" required></p-dropdown>
+              <div class="error-message" *ngIf="creditForm.get('unite')?.hasError('required') && creditForm.get('unite')?.touched">
+                Unite est obligatoire.
+              </div>
+            </div>
+  
+            <div class="field col-12 md:col-6">
+              <label for="nombreEcheance">Nombre échéances</label>
+              <input pInputText id="nombreEcheance" type="text" formControlName="nbEcheance" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+ 
+    </div>     <div class="grid grid-nogutter justify-content-between">
+        <p-button label="Back" (onClick)="prevPage()" icon="pi pi-angle-left"></p-button>
+        <p-button label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
+    </div>
+  </form>
+
+  
